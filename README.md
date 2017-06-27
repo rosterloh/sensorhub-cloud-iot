@@ -61,6 +61,14 @@ adb -d shell "run-as com.example.androidthings.sensorhub cat /data/user/0/com.ex
 
 A new keypair is only generated again when the device is reflashed.
 
+Setting up Google Cloud IoT
+-------------------
+
+```
+$ gcloud config set project PROJECT_ID
+$ gcloud beta iot registries create REGISTRY_ID --region=europe-west2
+```
+
 Register the device
 -------------------
 

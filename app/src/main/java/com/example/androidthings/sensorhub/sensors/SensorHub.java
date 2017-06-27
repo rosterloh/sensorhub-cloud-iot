@@ -43,6 +43,7 @@ public class SensorHub {
     private final AppExecutors appExecutors;
 
     private Bmx280 bmx280;
+    private Htu21d htu21d;
     private Button motionDetectorSensor;
 
     public MutableLiveData<Sensors> sensorData = new MutableLiveData<>();
@@ -51,13 +52,14 @@ public class SensorHub {
     public SensorHub(AppExecutors appExecutors) {
         this.appExecutors = appExecutors;
 
-        PeripheralManagerService pioService = new PeripheralManagerService();
         try {
+            htu21d = new Htu21d(BoardDefaults.getI2cBusForSensors());
+/*
             bmx280 = new Bmx280(BoardDefaults.getI2cBusForSensors(), Bmx280.DEFAULT_I2C_ADDRESS - 1);
             bmx280.setTemperatureOversampling(Bmx280.OVERSAMPLING_1X);
             bmx280.setPressureOversampling(Bmx280.OVERSAMPLING_1X);
             bmx280.setMode(Bmx280.MODE_NORMAL);
-
+*/
             motionDetectorSensor = new Button(BoardDefaults.getGPIOForMotionDetector(),
                     Button.LogicState.PRESSED_WHEN_HIGH);
             //motionDetectorSensor.setOnButtonEventListener(
@@ -83,6 +85,15 @@ public class SensorHub {
                         Timber.w("Cannot collect Bmx280 data. Ignoring it for now", t);
                         closeBmx280Quietly();
                     }
+                } else if (htu21d != null) {
+                    try {
+
+                        long now = System.currentTimeMillis();
+                        float[] data = htu21d.readTemperatureAndHumidity();
+                        appExecutors.mainThread().execute((() -> sensorData.setValue(new Sensors(now, data[0], data[1]))));
+                    } catch (Throwable t) {
+                        Timber.w(t);
+                    }
                 }
             }
         }, 0, SENSOR_READ_INTERVAL_MS);
@@ -96,6 +107,16 @@ public class SensorHub {
                 Timber.e("Failed to close Bmx280");
             } finally {
                 bmx280 = null;
+            }
+        }
+
+        if (htu21d != null) {
+            try {
+                htu21d.close();
+            } catch (IOException e) {
+                Timber.e("Failed to close Htu21d");
+            } finally {
+                htu21d = null;
             }
         }
     }

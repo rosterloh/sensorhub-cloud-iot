@@ -11,13 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/graph"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tv_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:gravity="center"
+            android:layout_marginStart="16dp"
             android:text="@{String.format(@string/temperature_format, sensors.temperature)}"
             android:textAlignment="center"
             android:textSize="70sp"
@@ -29,9 +36,9 @@
             android:id="@+id/tv_pressure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
             android:gravity="center"
-            android:text="@{String.format(@string/pressure_format, sensors.pressure / 1000)}"
+            android:layout_marginEnd="16dp"
+            android:text="@{String.format(@string/humidity_format, sensors.pressure)}"
             android:textAlignment="center"
             android:textSize="70sp"
             app:layout_constraintRight_toRightOf="parent"

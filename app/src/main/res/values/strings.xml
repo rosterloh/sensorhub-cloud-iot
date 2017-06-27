@@ -16,5 +16,6 @@
 <resources>
     <string name="app_name">Cloud IoT Sensor Hub</string>
     <string name="temperature_format">%.1f°C</string>
-    <string name="pressure_format">%.3f kPa</string>
+    <string name="pressure_format">%.1f Pa</string>
+    <string name="humidity_format">%.1f %%</string>
 </resources>

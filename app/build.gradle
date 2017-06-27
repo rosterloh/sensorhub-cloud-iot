@@ -49,7 +49,12 @@ android {
     dataBinding.enabled true
 }
 
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
 dependencies {
+    compile project(':mqttv3')
     compileOnly "com.google.android.things:androidthings:$rootProject.ext.androidThingsVersion"
     implementation 'com.google.android.things.contrib:driver-bmx280:0.3'
     implementation 'com.google.android.things.contrib:driver-button:0.3'
@@ -69,26 +74,10 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 
     implementation "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
-
-    // for pubsub:
-    implementation('com.google.api-client:google-api-client-android:1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-    implementation('com.google.apis:google-api-services-pubsub:v1-rev356-1.22.0') {
-        exclude group: 'org.apache.httpcomponents'
-    }
-
-    // for MQTT:
-    implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:$rootProject.ext.mqttVersion", {
-        exclude group: 'com.google.android', module: 'support-v4'
-    })
-    implementation("org.eclipse.paho:org.eclipse.paho.android.service:$rootProject.ext.mqttVersion", {
-        exclude group: 'com.google.android', module: 'support-v4'
-    })
     implementation 'io.jsonwebtoken:jjwt:0.7.0'
-
-    // Helper libraries for MQTT support:
     implementation 'joda-time:joda-time:2.9.9'
-    implementation 'commons-io:commons-io:2.5'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
+
+
 }

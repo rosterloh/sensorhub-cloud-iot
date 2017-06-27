@@ -122,7 +122,7 @@ public class MQTTPublisher implements CloudPublisher {
     }
 
     @Override
-    public void publish(List<SensorData> data) {/*
+    public void publish(List<SensorData> data) {
         try {
             if (isReady()) {
                 if (mqttClient != null && !mqttClient.isConnected()) {
@@ -140,7 +140,7 @@ public class MQTTPublisher implements CloudPublisher {
             }
         } catch (MqttException e) {
             throw new IllegalArgumentException("Could not send message", e);
-        }*/
+        }
     }
 
     @Override
@@ -160,22 +160,22 @@ public class MQTTPublisher implements CloudPublisher {
     }
 
     private void initializeMqttClient()
-        throws /*MqttException, IOException, NoSuchAlgorithmException, InvalidKeySpec*/Exception {
+        throws MqttException, IOException, NoSuchAlgorithmException, InvalidKeySpecException {
 
         mqttClient = new MqttClient(cloudIotOptions.getBrokerUrl(),
             cloudIotOptions.getClientId(), new MemoryPersistence());
 
-        //MqttConnectOptions options = new MqttConnectOptions();
+        MqttConnectOptions options = new MqttConnectOptions();
         // Note that the the Google Cloud IoT only supports MQTT 3.1.1, and Paho requires that we
         // explicitly set this. If you don't set MQTT version, the server will immediately close its
         // connection to your device.
-        //options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
-        //options.setUserName(CloudIotOptions.UNUSED_ACCOUNT_NAME);
+        options.setMqttVersion(MqttConnectOptions.MQTT_VERSION_3_1_1);
+        options.setUserName(CloudIotOptions.UNUSED_ACCOUNT_NAME);
 
         // generate the jwt password
-        //options.setPassword(mqttAuth.createJwt(cloudIotOptions.getProjectId()));
+        options.setPassword(mqttAuth.createJwt(cloudIotOptions.getProjectId()));
 
-        mqttClient.connect(/*options*/);
+        mqttClient.connect(options);
         mReady.set(true);
     }
 

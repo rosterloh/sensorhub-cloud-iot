@@ -20,7 +20,6 @@ import android.security.keystore.KeyInfo;
 import android.security.keystore.KeyProperties;
 import android.util.Base64;
 import android.util.Log;
-import com.google.common.io.BaseEncoding;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -95,8 +94,6 @@ public class MqttAuthentication {
         X509Certificate x509Certificate = (X509Certificate) certificate;
         Log.d(TAG, "Subject: " + x509Certificate.getSubjectX500Principal().toString());
         Log.d(TAG, "Issuer: " + x509Certificate.getIssuerX500Principal().toString());
-        Log.d(TAG, "Signature: " + BaseEncoding.base16().lowerCase().withSeparator(":", 2)
-            .encode(x509Certificate.getSignature()));
       }
 
       Key key = ks.getKey(keyAlias, null);
