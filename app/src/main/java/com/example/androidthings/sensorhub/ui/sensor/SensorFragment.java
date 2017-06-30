@@ -142,7 +142,7 @@ public class SensorFragment extends LifecycleFragment {
         set.setColor(ColorTemplate.MATERIAL_COLORS[0]);
         set.setCircleColor(Color.WHITE);
         set.setLineWidth(2f);
-        set.setCircleRadius(4f);
+        set.setCircleRadius(1f);
         set.setFillAlpha(65);
         set.setFillColor(ColorTemplate.MATERIAL_COLORS[0]);
         set.setHighLightColor(Color.rgb(244, 117, 117));
@@ -159,7 +159,7 @@ public class SensorFragment extends LifecycleFragment {
         set.setColor(ColorTemplate.MATERIAL_COLORS[1]);
         set.setCircleColor(Color.WHITE);
         set.setLineWidth(2f);
-        set.setCircleRadius(4f);
+        set.setCircleRadius(1f);
         set.setFillAlpha(65);
         set.setFillColor(ColorTemplate.MATERIAL_COLORS[1]);
         set.setHighLightColor(Color.rgb(244, 117, 117));

@@ -2,6 +2,7 @@ buildscript {
     repositories {
         jcenter()
         maven { url 'https://maven.google.com' }
+        mavenLocal()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0-alpha4'
@@ -16,6 +17,7 @@ allprojects {
     repositories {
         jcenter()
         maven { url 'https://maven.google.com' }
+        mavenLocal()
     }
 }
 
@@ -36,7 +38,8 @@ ext {
     constraintLayoutVersion = "1.1.0-beta1"
     daggerVersion = "2.11"
     timberVersion = "4.5.1"
-    mqttVersion = "1.1.1"
+    mqttVersion = "1.1.2-LOCAL"
+    mpChartVersion = "v3.0.2"
     junitVersion = "4.12"
     espressoVersion = "2.2.2"
 }

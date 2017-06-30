@@ -54,30 +54,30 @@ repositories {
 }
 
 dependencies {
-    compile project(':mqttv3')
-    compileOnly "com.google.android.things:androidthings:$rootProject.ext.androidThingsVersion"
+    compileOnly "com.google.android.things:androidthings:$androidThingsVersion"
     implementation 'com.google.android.things.contrib:driver-bmx280:0.3'
     implementation 'com.google.android.things.contrib:driver-button:0.3'
+    implementation 'com.rosterloh.things:driver-htu21d:0.1'
 
-    implementation "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVersion"
-    implementation "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
 
-    implementation "android.arch.lifecycle:runtime:$rootProject.ext.archVersion"
-    implementation "android.arch.lifecycle:extensions:$rootProject.ext.archVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.ext.archVersion"
+    implementation "android.arch.lifecycle:runtime:$archVersion"
+    implementation "android.arch.lifecycle:extensions:$archVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
 
-    compileOnly "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+    compileOnly "com.google.dagger:dagger:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    implementation "com.jakewharton.timber:timber:$rootProject.ext.timberVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
     implementation 'io.jsonwebtoken:jjwt:0.7.0'
     implementation 'joda-time:joda-time:2.9.9'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.2'
-    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    implementation "com.github.PhilJay:MPAndroidChart:$mpChartVersion"
+    testImplementation "junit:junit:$junitVersion"
 
 
 }

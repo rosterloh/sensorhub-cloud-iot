@@ -6,7 +6,7 @@ import com.example.androidthings.sensorhub.BoardDefaults;
 import com.example.androidthings.sensorhub.util.AppExecutors;
 import com.google.android.things.contrib.driver.bmx280.Bmx280;
 import com.google.android.things.contrib.driver.button.Button;
-import com.google.android.things.pio.PeripheralManagerService;
+import com.rosterloh.things.driver.htu21d.Htu21d;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -22,7 +22,7 @@ import timber.log.Timber;
 @Singleton
 public class SensorHub {
 
-    private static final long SENSOR_READ_INTERVAL_MS = TimeUnit.SECONDS.toMillis(20);
+    private static final long SENSOR_READ_INTERVAL_MS = TimeUnit.MINUTES.toMillis(2);
     /**
      * Cutoff to consider a timestamp as valid. Some boards might take some time to update
      * their network time on the first time they boot, and we don't want to publish sensor data
